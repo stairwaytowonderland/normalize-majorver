@@ -1,13 +1,13 @@
-# Create a GitHub Action Using TypeScript
+# normalize-majorver
 
-![CI](https://github.com/stairwaytowonderland/typescript-action-template/actions/workflows/ci.yml/badge.svg)
-![Linter](https://github.com/stairwaytowonderland/typescript-action-template/actions/workflows/linter.yml/badge.svg)
-![CodeQL](https://github.com/stairwaytowonderland/typescript-action-template/actions/workflows/codeql-analysis.yml/badge.svg)
+![CI](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/ci.yml/badge.svg)
+![Linter](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/linter.yml/badge.svg)
+![CodeQL](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/codeql-analysis.yml/badge.svg)
 ![Coverage](./badges/coverage.svg)
 
-[![GitHub latest release](https://img.shields.io/github/v/release/stairwaytowonderland/typescript-action-template?include_prereleases&logo=rocket)](https://github.com/stairwaytowonderland/typescript-action-template/releases)
-[![GitHub last commit](https://img.shields.io/github/last-commit/stairwaytowonderland/typescript-action-template/main?logo=git)](https://github.com/stairwaytowonderland/typescript-action-template/commits/main)
-[![GitHub license](https://img.shields.io/github/license/stairwaytowonderland/typescript-action-template?logo=opensourceinitiative&labelCol&color=yellow&logoColor=white)](https://github.com/stairwaytowonderland/typescript-action-template/tree/main/LICENSE)
+[![GitHub latest release](https://img.shields.io/github/v/release/stairwaytowonderland/normalize-majorver?include_prereleases&logo=rocket)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/stairwaytowonderland/normalize-majorver?logo=git)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/commits/main)
+[![GitHub license](https://img.shields.io/github/license/stairwaytowonderland/normalize-majorver?logo=opensourceinitiative&labelCol&color=yellow&logoColor=white)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/tree/main/LICENSE)
 [![semantic-release: conventionalcommits](https://img.shields.io/badge/semantic--release-cc-FE5196?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 [![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?logo=pre-commit&logoColor=black)](https://github.com/pre-commit/pre-commit)
 
@@ -74,10 +74,10 @@ If you are new, there's also a simpler introduction in the
 
 ### :white_check_mark: First tasks
 
-- [ ] **:one: :tada: Create your repo:** Use this template to [**Create your own action**](#honeybee-create-your-own-action)!
-- [ ] **:two: Create some labels:** Run the [Create Labels](https://github.com/stairwaytowonderland/typescript-action-template/actions/workflows/create-labels.yml)
+- [x] **:one: :tada: Create your repo:** Use this template to [**Create your own action**](#honeybee-create-your-own-action)!
+- [x] **:two: Create some labels:** Run the [Create Labels](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/create-labels.yml)
 _workflow_ to create some additional useful labels.
-- [ ] **:three: Create some issues:** Run the [Import Issues from CSV](https://github.com/stairwaytowonderland/typescript-action-template/actions/workflows/import-csv-issues.yml)
+- [ ] **:three: Create some issues:** Run the [Import Issues from CSV](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/import-csv-issues.yml)
   _workflow_ to import first issues using the provided sample _TODO.csv_.
 - [ ] **:four: Customize your _action_:**
   Customize the `README.md`, `CODEOWNERS`, `LICENSE`, `package.json` _(and `package-lock.json`)_, and `action.yaml`
@@ -371,7 +371,7 @@ steps:
 ```
 
 For example workflow runs, check out the
-[Actions tab](https://github.com/stairwaytowonderland/typescript-action-template/actions)! :rocket:
+[Actions tab](https://github.com/stairwaytowonderland/normalize-majorver/actions)! :rocket:
 
 ## :joystick: Usage
 
@@ -551,5 +551,5 @@ files.
 > [!NOTE]
 >
 > See
-> [Contributing Guidelines](https://github.com/stairwaytowonderland/typescript-action-template?tab=contributing-ov-file#contributing-guidelines)
+> [Contributing Guidelines](https://github.com/stairwaytowonderland/normalize-majorver?tab=contributing-ov-file#contributing-guidelines)
 > for more information.
