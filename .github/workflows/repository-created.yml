@@ -1,0 +1,30 @@
+name: _
+
+on:
+  repository_dispatch:
+    types: [repository-created]
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    outputs:
+      is-first-commit: ${{ steps.check-if-first-commit.outputs.is-first-commit == 'true' }}
+    steps:
+      - name: Check if this is the first commit
+        id: check-if-first-commit
+        uses: stairwaytowonderland/actions/.github/actions/first-commit-action@v1
+
+  on-create:
+    name: Repository Created
+    needs: [setup]
+    if: needs.setup.outputs.is-first-commit == 'true'
+    uses: stairwaytowonderland/actions/.github/workflows/repository-created.yaml@v1
+    with:
+      repo: ${{ github.event.client_payload.repository.name }}
+      url: ${{ github.event.client_payload.repository.url }}
+      sender: ${{ github.event.client_payload.sender.login }}
+      sender-id: ${{ github.event.client_payload.sender.id }}

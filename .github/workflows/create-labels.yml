@@ -1,0 +1,35 @@
+name: Create Labels
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+on:
+  repository_dispatch:
+    types: [create-labels]
+
+  # checkov:skip=CKV_GHA_7: Inputs are required for manual targeting
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry run'
+        type: boolean
+        default: true
+      update-existing:
+        description: 'Whether to update existing labels (e.g. rename, change
+          color/description).'
+        type: boolean
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  create-labels:
+    name: Create Labels
+    uses: stairwaytowonderland/label-management/.github/workflows/create-labels.yaml@v1
+    secrets: inherit
+    with:
+      dry-run: ${{ inputs.dry-run == true }}
+      update-existing: ${{ inputs.update-existing == true }}

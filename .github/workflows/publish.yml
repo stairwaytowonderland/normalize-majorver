@@ -1,0 +1,24 @@
+name: Publish a Release
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g. v1.2.3)'
+        type: string
+        required: true
+      notes-b64:
+        description: 'Base64-encoded release notes (Markdown)'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Publish
+    uses: stairwaytowonderland/actions/.github/workflows/publish.yaml@v1
+    secrets: inherit
+    with:
+      tag: ${{ github.ref_name || inputs.tag }}
+      notes-b64: ${{ inputs.notes-b64 }}
