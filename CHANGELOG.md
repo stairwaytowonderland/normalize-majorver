@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.0...v1.0.1) (2026-07-10)
+
+### 📚 Documentation
+
+* README update badge spacing/placement [skip ci] ([e9cce0d](https://github.com/stairwaytowonderland/normalize-majorver/commit/e9cce0dc3e17558410762d9dd0e5bbebb9dbb062))
+* README update badge spacing/placement [skip ci] ([8ddb772](https://github.com/stairwaytowonderland/normalize-majorver/commit/8ddb772cd236bde19efa65dc6091e2ca2f94f05f))
+* **README:** update overview ([b2f1059](https://github.com/stairwaytowonderland/normalize-majorver/commit/b2f1059df1162a673db6aafab6ad0c20e3b93152))
+
 ## 1.0.0 (2026-07-10)
 
 ### ✨ Features
