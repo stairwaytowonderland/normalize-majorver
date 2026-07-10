@@ -1,17 +1,17 @@
 {
-	"name": "typescript-action",
-	"description": "GitHub Actions TypeScript template",
+	"name": "normalize-majorver",
+	"description": "Create, update, and normalize major version tags for GitHub Actions based on semantic versioning tags",
 	"version": "0.0.0",
-	"author": "",
+	"author": "stairwaytowonderland",
 	"type": "module",
 	"private": true,
-	"homepage": "https://github.com/stairwaytowonderland/typescript-action-template",
+	"homepage": "https://github.com/stairwaytowonderland/normalize-majorver",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/stairwaytowonderland/typescript-action-template.git"
+		"url": "git+https://github.com/stairwaytowonderland/normalize-majorver.git"
 	},
 	"bugs": {
-		"url": "https://github.com/stairwaytowonderland/typescript-action-template/issues"
+		"url": "https://github.com/stairwaytowonderland/normalize-majorver/issues"
 	},
 	"keywords": [
 		"actions"
@@ -43,7 +43,8 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@actions/core": "^3.0.0"
+		"@actions/core": "^3.0.0",
+		"@actions/github": "^9.1.1"
 	},
 	"devDependencies": {
 		"@emnapi/runtime": "^1.10.0",
@@ -61,11 +62,14 @@
 		"@types/jest": "^30.0.0",
 		"@types/node": "^26.0.1",
 		"@typescript-eslint/eslint-plugin": "^8.56.0",
+		"@typescript-eslint/parser": "^8.62.1",
+		"@vercel/ncc": "^0.44.1",
 		"conventional-changelog-conventionalcommits": "^9.3.1",
 		"eslint": "^10.0.0",
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-jest": "^29.15.0",
 		"eslint-plugin-prettier": "^5.5.5",
+		"husky": "^9.1.7",
 		"jest": "^30.2.0",
 		"make-coverage-badge": "^1.2.0",
 		"prettier": "^3.8.1",

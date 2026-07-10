@@ -25,7 +25,7 @@ on:
 
 concurrency:
   group: '${{ github.repository_id }}-${{ github.ref_name }}'
-  cancel-in-progress: ${{ github.event_name == 'push' }}
+  cancel-in-progress: false
 
 permissions:
   actions: write
@@ -39,11 +39,22 @@ permissions:
 jobs:
   release-and-publish:
     name: Release and Publish
-    uses: stairwaytowonderland/actions/.github/workflows/ci.yaml@v1
+    uses: stairwaytowonderland/actions/.github/workflows/ci.yaml@main
     secrets: inherit
     with:
       first-release-dispatch-workflow: ci.yaml
-      normalize-majorver: true
       # The following inputs are required in the workflow specified by first-release-dispatch-workflow (e.g. the ci.yaml in this case):
       tag: ${{ inputs.tag }}
       notes-b64: ${{ inputs.notes-b64 }}
+
+  normalize-majorver:
+    name: Normalize Major Version Tag
+    needs: [release-and-publish]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - uses: ./

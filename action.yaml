@@ -1,24 +1,20 @@
-name: The name of your action here
-description: Provide a description here
-author: Your name or organization here
+name: Normalize Major Version Tag
+description: Create and update normalized major version tags for GitHub Actions based on semantic versioning tags
+author: stairwaytowonderland
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
 # https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax
 branding:
-  icon: heart
+  icon: tag
   color: red
 
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: Your input description here
-    required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: Your output description here
+  dry-run:
+    description: Dry run
+    required: false
+    default: 'false'
+  github-token:
+    description: GitHub token
+    default: ${{ github.token }}
 
 runs:
   using: node24

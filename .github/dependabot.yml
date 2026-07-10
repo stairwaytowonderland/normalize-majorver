@@ -43,7 +43,7 @@ updates:
         applies-to: version-updates
         patterns:
           - '*'
-    # assignees: ['andrewhaller']
+    assignees: ['andrewhaller']
 
   - package-ecosystem: 'github-actions'
     directories:
@@ -63,15 +63,12 @@ updates:
         applies-to: version-updates
         patterns:
           - '*'
-    # assignees: ['andrewhaller']
+    assignees: ['andrewhaller']
 
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
-    ignore:
-      - dependency-name: '*'
-        update-types: ['version-update:semver-major']
     commit-message:
       prefix: 'chore'
       include: 'scope' # Automatically appends "(deps)" -> chore(deps):
@@ -91,6 +88,9 @@ updates:
         applies-to: version-updates
         patterns:
           - '*'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
     registries:
       - npm-public
-    # assignees: ['andrewhaller']
+    assignees: ['andrewhaller']
