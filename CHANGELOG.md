@@ -1,3 +1,9 @@
+## [1.0.4](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.3...v1.0.4) (2026-07-10)
+
+### 📚 Documentation
+
+* **README:** update overview ([322b533](https://github.com/stairwaytowonderland/normalize-majorver/commit/322b5334a2d959428979cbebe40cfcc89f72874a))
+
 ## [1.0.3](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.2...v1.0.3) (2026-07-10)
 
 ### 📚 Documentation
