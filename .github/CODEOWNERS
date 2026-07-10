@@ -1,0 +1,10 @@
+############################################################################
+#                           Repository CODEOWNERS                          #
+# Order is important! The last matching pattern takes the most precedence. #
+############################################################################
+
+# Assign all directories and files to Primary Owner(s) by default
+*				@stairwaytowonderland/owners
+
+# Assign the specific directory to owners responsible for GitHub configuration and workflows
+/.github/		@andrewhaller

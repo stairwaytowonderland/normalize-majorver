@@ -1,0 +1,18 @@
+name: 🚀 Repository Created
+
+on:
+  repository_dispatch:
+    types: [repository-created]
+
+permissions:
+  contents: read
+
+jobs:
+  on-create:
+    name: 🚀 On Create
+    uses: stairwaytowonderland/actions/.github/workflows/repository-created.yaml@v1
+    with:
+      repo: ${{ github.event.client_payload.repository.name }}
+      url: ${{ github.event.client_payload.repository.url }}
+      sender: ${{ github.event.client_payload.sender.login }}
+      sender-id: ${{ github.event.client_payload.sender.id }}

@@ -1,0 +1,5 @@
+Status,Priority,Effort,Title,Description,Completed
+closed,High,High,[BUG] Fix a problem,"A detailed description of the problem",true
+open,High,Medium,[FEATURE] Add enhancement,"A detailed description of the enhancement",false
+new,Low,Medium,[TASK] A minor task,,false
+,Low,Low,[DOCUMENTATION] Document project specifics,,false

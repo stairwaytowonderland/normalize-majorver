@@ -1,0 +1,18 @@
+name: 🎫 Dependabot Tests
+
+on:
+  workflow_run:
+    workflows: ['_']
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  dependabot-pr-test:
+    name: Dependabot PR Test
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6

@@ -1,0 +1,14 @@
+name: 🌟 Stargazers
+
+permissions:
+  contents: read
+
+on:
+  watch:
+    types: [started]
+
+jobs:
+  stargazers:
+    name: 🌟 On Star
+    uses: stairwaytowonderland/actions/.github/workflows/stargazers.yaml@v1
+    secrets: inherit

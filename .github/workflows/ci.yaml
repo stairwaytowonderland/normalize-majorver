@@ -1,0 +1,49 @@
+name: 🔄 CI
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'package.json'
+      - 'package-lock.json'
+
+    tags:
+      - 'v*'
+
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing release tag to publish (e.g. v1.2.3)'
+        type: string
+        default: '' # checkov:skip=CKV_GHA_7: Tag required for automated dispatch, which is used for the first tag/release
+      notes-b64:
+        description: 'Base64-encoded release notes (Markdown)'
+        type: string
+        default: '' # checkov:skip=CKV_GHA_7: Release notes required for automated dispatch, which is used for the first tag/release
+
+concurrency:
+  group: '${{ github.repository_id }}-${{ github.ref_name }}'
+  cancel-in-progress: ${{ github.event_name == 'push' }}
+
+permissions:
+  actions: write
+  contents: write
+  issues: write
+  pull-requests: write
+
+# Use PAT instead of GITHUB_TOKEN to cause semantic-release to trigger tag pipeline when tag is created.
+# 'Fine-grained token' repo permissions: Contents
+
+jobs:
+  release-and-publish:
+    name: Release and Publish
+    uses: stairwaytowonderland/actions/.github/workflows/ci.yaml@v1
+    secrets: inherit
+    with:
+      first-release-dispatch-workflow: ci.yaml
+      normalize-majorver: true
+      # The following inputs are required in the workflow specified by first-release-dispatch-workflow (e.g. the ci.yaml in this case):
+      tag: ${{ inputs.tag }}
+      notes-b64: ${{ inputs.notes-b64 }}

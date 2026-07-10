@@ -1,0 +1,33 @@
+# This workflow checks the statuses of cached dependencies used in this action
+# with the help of the Licensed tool. If any licenses are invalid or missing,
+# this workflow will fail. See: https://github.com/licensee/licensed
+
+name: 💳 Licensed
+
+on:
+  # Uncomment the below lines to run this workflow on repository creation events.
+  # This is useful for checking licenses on new repositories before any code is added.
+  # Note: This may require the GitHub App first be added to the ruleset bypass list for the repository.
+  # repository_dispatch:
+  #   types: [repository-created]
+
+  # Uncomment the below lines to run this workflow on pull requests and pushes
+  # to the default branch. This is useful for checking licenses before merging
+  # changes into the default branch.
+  # pull_request:
+  #   branches:
+  #     - main
+  # push:
+  #   branches:
+  #     - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  licensed:
+    name: Check Licenses
+    uses: stairwaytowonderland/actions/.github/workflows/licensed.yaml@v1
+    secrets: inherit
