@@ -1,8 +1,15 @@
 # :shopping_cart: GitHub Action: Normalize Major Version Tag
 
-![CI](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/ci.yaml/badge.svg) ![Linter](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/linter.yaml/badge.svg) ![CodeQL](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/codeql-analysis.yml/badge.svg) ![Coverage](./badges/coverage.svg)
+![CI](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/ci.yaml/badge.svg)
+![Linter](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/linter.yaml/badge.svg)
+![CodeQL](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/codeql-analysis.yml/badge.svg)
+![Coverage](./badges/coverage.svg)
 
-[![GitHub latest release](https://img.shields.io/github/v/release/stairwaytowonderland/normalize-majorver?include_prereleases&logo=rocket)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/releases) [![GitHub last commit](https://img.shields.io/github/last-commit/stairwaytowonderland/normalize-majorver?logo=git)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/commits/main) [![GitHub license](https://img.shields.io/github/license/stairwaytowonderland/normalize-majorver?logo=opensourceinitiative&labelCol&color=yellow&logoColor=white)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/tree/main/LICENSE) [![semantic-release: conventionalcommits](https://img.shields.io/badge/semantic--release-cc-FE5196?logo=semantic-release)](https://github.com/semantic-release/semantic-release) [![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?logo=pre-commit&logoColor=black)](https://github.com/pre-commit/pre-commit)
+[![GitHub latest release](https://img.shields.io/github/v/release/stairwaytowonderland/normalize-majorver?include_prereleases&logo=rocket)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/stairwaytowonderland/normalize-majorver?logo=git)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/commits/main)
+[![GitHub license](https://img.shields.io/github/license/stairwaytowonderland/normalize-majorver?logo=opensourceinitiative&labelCol&color=yellow&logoColor=white)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/tree/main/LICENSE)
+[![semantic-release: conventionalcommits](https://img.shields.io/badge/semantic--release-cc-FE5196?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![pre-commit](https://img.shields.io/badge/pre--commit-FAB040?logo=pre-commit&logoColor=black)](https://github.com/pre-commit/pre-commit)
 
 ## :pushpin: Overview
 
