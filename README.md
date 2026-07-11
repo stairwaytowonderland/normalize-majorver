@@ -69,7 +69,7 @@ pushed. For example, if v1.2.3 tag is pushed, it updates the v1 tag. It works we
 
 ## :rocket: Key Features
 
-:white_check_mark: Ues a consistent, single, major version tag to reference your actions!
+:white_check_mark: Use a consistent, single, major version tag to reference your actions!
 
 ## :video_game: Usage
 
