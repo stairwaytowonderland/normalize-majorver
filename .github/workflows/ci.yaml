@@ -12,15 +12,6 @@ on:
       - 'v*'
 
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Existing release tag to publish (e.g. v1.2.3)'
-        type: string
-        default: '' # checkov:skip=CKV_GHA_7: Tag required for automated dispatch, which is used for the first tag/release
-      notes-b64:
-        description: 'Base64-encoded release notes (Markdown)'
-        type: string
-        default: '' # checkov:skip=CKV_GHA_7: Release notes required for automated dispatch, which is used for the first tag/release
 
 concurrency:
   group: '${{ github.repository_id }}-${{ github.ref_name }}'
