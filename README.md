@@ -69,7 +69,61 @@ pushed. For example, if v1.2.3 tag is pushed, it updates the v1 tag. It works we
 
 ## :rocket: Key Features
 
-:white_check_mark: Easy to use!
+:white_check_mark: Ues a consistent, single, major version tag to reference your actions!
+
+## :video_game: Usage
+
+After testing, you can commit your changes and create version tag(s) that developers can use to reference different
+stable versions of your action. For more information, see
+[Versioning](https://github.com/actions/toolkit/blob/main/docs/action-versioning.md) in the GitHub Actions toolkit.
+
+To include the action in a workflow in another repository, you can use the
+`uses` syntax with the `@` symbol to reference a specific branch, tag, or commit
+hash.
+
+```yaml
+- uses: stairwaytowonderland/normalize-majorver@v1
+  with:
+    # Whether to perform a dry run (no changes will be made).
+    # Default: 'false'.
+    dry-run: ''
+
+    # GitHub token used to authenticate with the GitHub API.
+    # Default: ${{ github.token }}
+    github-token: ''
+```
+
+> [!NOTE]
+>
+> :key: Permissions
+>
+> In order to create or update a new tag, the `contents:write` permissions are required:
+>
+> ```yaml
+> permissions:
+>   contents: write
+> ```
+
+### :computer: Example
+
+```yaml
+name: Normalize Major Version Tag
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  normalize-majorver:
+    name: Normalize Major Version Tag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: stairwaytowonderland/normalize-majorver@v1
+```
 
 ## :gear: Initial Setup
 
@@ -137,46 +191,6 @@ need to perform some initial setup steps before you can develop your action.
     $ npm run all
     ...
     ```
-
-## :video_game: Usage
-
-After testing, you can commit your changes and create version tag(s) that developers can use to reference different
-stable versions of your action. For more information, see
-[Versioning](https://github.com/actions/toolkit/blob/main/docs/action-versioning.md) in the GitHub Actions toolkit.
-
-To include the action in a workflow in another repository, you can use the
-`uses` syntax with the `@` symbol to reference a specific branch, tag, or commit
-hash.
-
-### :key: Permissions
-
-In order to create or update a new tag, the `contents:write` permissions are required:
-
-```yaml
-permissions:
-  contents: write
-```
-
-### :computer: Example
-
-```yaml
-name: Normalize Major Version Tag
-
-on:
-  push:
-    tags:
-      - "v*"
-
-permissions:
-  contents: write
-
-jobs:
-  normalize-majorver:
-    name: Normalize Major Version Tag
-    runs-on: ubuntu-latest
-    steps:
-      - uses: stairwaytowonderland/normalize-majorver@v1
-```
 
 ---
 
