@@ -1,3 +1,9 @@
+## [1.0.7](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.6...v1.0.7) (2026-07-11)
+
+### 🐛 Bug Fixes
+
+* using release/publish instead of combined ci ([03eada5](https://github.com/stairwaytowonderland/normalize-majorver/commit/03eada52518cfc8dd6533acfbd02c8cb385e3264))
+
 ## [1.0.6](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.5...v1.0.6) (2026-07-11)
 
 ### 📚 Documentation
