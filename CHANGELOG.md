@@ -1,3 +1,17 @@
+## [1.0.5](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.4...v1.0.5) (2026-07-11)
+
+### 🐛 Bug Fixes
+
+* update action description ([2e23a57](https://github.com/stairwaytowonderland/normalize-majorver/commit/2e23a578f1fc057a6c2ba564e1d15658b477edb1))
+
+### 📚 Documentation
+
+* update README ([08d09f2](https://github.com/stairwaytowonderland/normalize-majorver/commit/08d09f2d9f5ab6ce0a824e2d1da1718a5d623428))
+
+### 🔧 Chores
+
+* **deps-dev:** bump the npm group with 3 updates ([#2](https://github.com/stairwaytowonderland/normalize-majorver/issues/2)) ([7e0ee70](https://github.com/stairwaytowonderland/normalize-majorver/commit/7e0ee702fc35c0ae23cc85a680083301434fbbf7))
+
 ## [1.0.4](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.3...v1.0.4) (2026-07-10)
 
 ### 📚 Documentation
