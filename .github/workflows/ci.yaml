@@ -36,20 +36,36 @@ permissions:
 # 'Fine-grained token' repo permissions: Contents
 
 jobs:
-  release-and-publish:
-    name: Release and Publish
-    uses: stairwaytowonderland/actions/.github/workflows/ci.yaml@main
+  meta:
+    name: Meta
+    uses: stairwaytowonderland/actions/.github/workflows/ci-meta.yaml@v1
+    permissions:
+      contents: read
+
+  release:
+    name: Release
+    needs: [meta]
+    if: needs.meta.outputs.is-release-workflow == 'true'
+    uses: ./.github/workflows/release.yaml
+    secrets: inherit
+    # To use the dispatch-workflow for the first release, uncomment the following:
+    with:
+      dispatch-workflow: ${{ needs.meta.outputs.has-release-tags != 'true' && 'publish.yaml' || '' }}
+
+  publish:
+    name: Publish
+    needs: [meta]
+    if: needs.meta.outputs.is-publish-workflow == 'true'
+    uses: ./.github/workflows/publish.yaml
+    permissions:
+      contents: write
     secrets: inherit
     with:
-      first-release-dispatch-workflow: ci.yaml
-      # The following inputs are required in the workflow specified by first-release-dispatch-workflow (e.g. the ci.yaml in this case):
-      tag: ${{ inputs.tag }}
-      notes-b64: ${{ inputs.notes-b64 }}
+      tag: ${{ github.ref_name }}
 
   normalize-majorver:
     name: Normalize Major Version Tag
-    needs: [release-and-publish]
-    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [publish]
     runs-on: ubuntu-latest
     permissions:
       contents: write
