@@ -85,7 +85,7 @@ hash.
 - uses: stairwaytowonderland/normalize-majorver@v1
   with:
     # Whether to perform a dry run (no changes will be made).
-    # Default: 'false'.
+    # Default: 'false'
     dry-run: ''
 
     # GitHub token used to authenticate with the GitHub API.
