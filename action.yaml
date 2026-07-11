@@ -1,5 +1,5 @@
 name: Normalize Major Version Tag
-description: Create and update normalized major version tags for GitHub Actions based on semantic versioning tags
+description: 'Create and update normalized major version tags for GitHub Actions based on semantic versioning tags. Example: If a tag v1.2.3 is pushed, this action will create or update the tag v1.'
 author: stairwaytowonderland
 
 # https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax
@@ -9,11 +9,11 @@ branding:
 
 inputs:
   dry-run:
-    description: Dry run
+    description: Whether to perform a dry run (no changes will be made); Default is 'false'.
     required: false
     default: 'false'
   github-token:
-    description: GitHub token
+    description: GitHub token used to authenticate with the GitHub API; Default is the github.token variable.
     default: ${{ github.token }}
 
 runs:
