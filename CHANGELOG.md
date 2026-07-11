@@ -1,3 +1,9 @@
+## [1.0.9](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.8...v1.0.9) (2026-07-11)
+
+### 🐛 Bug Fixes
+
+* add checkov comments to publish inputs; removed unnecessary inputs from main ci ([9a5334d](https://github.com/stairwaytowonderland/normalize-majorver/commit/9a5334d7bbd733dee7454a42e8adff762016725b))
+
 ## [1.0.8](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.7...v1.0.8) (2026-07-11)
 
 ### 📚 Documentation
