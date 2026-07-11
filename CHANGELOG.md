@@ -1,3 +1,9 @@
+## [1.0.8](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.7...v1.0.8) (2026-07-11)
+
+### 📚 Documentation
+
+* **README:** fix spelling ([0fd6b66](https://github.com/stairwaytowonderland/normalize-majorver/commit/0fd6b66428022759cb4db41339a6b6a180f7e25b))
+
 ## [1.0.7](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.6...v1.0.7) (2026-07-11)
 
 ### 🐛 Bug Fixes
