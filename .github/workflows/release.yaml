@@ -22,7 +22,7 @@ permissions:
 jobs:
   release:
     name: Release
-    uses: stairwaytowonderland/actions/.github/workflows/release.yaml@v1
+    uses: stairwaytowonderland/.github/.github/workflows/release.yaml@v1
     secrets: inherit
     with:
       dispatch-workflow: ${{ inputs.dispatch-workflow }}

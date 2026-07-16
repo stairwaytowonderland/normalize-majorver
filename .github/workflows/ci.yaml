@@ -29,7 +29,7 @@ permissions:
 jobs:
   meta:
     name: Meta
-    uses: stairwaytowonderland/actions/.github/workflows/ci-meta.yaml@v1
+    uses: stairwaytowonderland/.github/.github/workflows/ci-meta.yaml@v1
     permissions:
       contents: read
 

@@ -10,5 +10,5 @@ on:
 jobs:
   stargazers:
     name: 🌟 On Star
-    uses: stairwaytowonderland/actions/.github/workflows/stargazers.yaml@v1
+    uses: stairwaytowonderland/.github/.github/workflows/stargazers.yaml@v1
     secrets: inherit

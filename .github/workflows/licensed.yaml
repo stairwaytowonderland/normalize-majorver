@@ -29,5 +29,5 @@ permissions:
 jobs:
   licensed:
     name: Check Licenses
-    uses: stairwaytowonderland/actions/.github/workflows/licensed.yaml@v1
+    uses: stairwaytowonderland/.github/.github/workflows/licensed.yaml@v1
     secrets: inherit
