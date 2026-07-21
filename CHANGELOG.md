@@ -1,3 +1,13 @@
+## [1.1.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.9...v1.1.0) (2026-07-21)
+
+### ✨ Features
+
+* update LICENSE ([7a23caa](https://github.com/stairwaytowonderland/normalize-majorver/commit/7a23caa8eda5127c94cffa35328529f59f032023))
+
+### 🔧 Chores
+
+* update reuseable workflow references ([10296aa](https://github.com/stairwaytowonderland/normalize-majorver/commit/10296aa9d0b37aa721871f1c7faeb66440deb2a8))
+
 ## [1.0.9](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.8...v1.0.9) (2026-07-11)
 
 ### 🐛 Bug Fixes

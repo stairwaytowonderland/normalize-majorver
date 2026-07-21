@@ -1,7 +1,7 @@
 {
 	"name": "normalize-majorver",
 	"description": "Create, update, and normalize major version tags for GitHub Actions based on semantic versioning tags",
-	"version": "1.0.9",
+	"version": "1.1.0",
 	"author": "stairwaytowonderland",
 	"type": "module",
 	"private": true,
