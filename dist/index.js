@@ -33230,7 +33230,8 @@ async function run() {
         debug(`isPullRequest: ${isPullRequest}`);
         debug(`isCreateEvent: ${isCreateEvent}`);
         debug(`isWorkflowDispatchEvent: ${isWorkflowDispatchEvent}`);
-        const contextRef = isDryRun ? dryRunTag : context.ref;
+        const inputTag = getInput('ref');
+        const contextRef = isDryRun ? dryRunTag : inputTag || context.ref;
         debug(`context: ${JSON.stringify(context)}`);
         info(`ref: ${contextRef}`);
         if (!refIsValidMajorVer(contextRef)) {

@@ -15,6 +15,10 @@ inputs:
   github-token:
     description: GitHub token used to authenticate with the GitHub API; Default is the github.token variable.
     default: ${{ github.token }}
+  ref:
+    description: Git reference to use for creating the normalized major version tag.
+    required: false
+    default: ''
 
 runs:
   using: node24

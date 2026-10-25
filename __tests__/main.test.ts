@@ -35,6 +35,7 @@ describe('Normalize Major Version', () => {
 		// Use parameter-aware mock implementation instead of fragile sequential mocking
 		core.getInput.mockImplementation((name: string) => {
 			if (name === 'github-token') return 'mygithubtoken'
+			if (name === 'ref') return ''
 			return 'false' // default dry-run to false for standard paths
 		})
 
@@ -61,6 +62,32 @@ describe('Normalize Major Version', () => {
 		const github = {
 			git: {
 				// Returns a rejected Promise simulating a 404 error
+				getRef: jest.fn<any>().mockRejectedValue(new Error('Not Found')),
+				createRef,
+			},
+		}
+
+		jest.mocked(Octokit).mockImplementation(() => github as any)
+
+		await run()
+
+		expect(createRef).toHaveBeenCalledWith({
+			owner: 'fake-owner',
+			repo: 'fake-repo',
+			ref: 'refs/tags/v1',
+			sha: 'commit_sha',
+		})
+	})
+
+	test('Create new major tag with tag input', async () => {
+		core.getInput.mockImplementation((name: string) => {
+			if (name === 'github-token') return 'mygithubtoken'
+			if (name === 'ref') return 'refs/tags/v1.2.3'
+			return 'false'
+		})
+
+		const github = {
+			git: {
 				getRef: jest.fn<any>().mockRejectedValue(new Error('Not Found')),
 				createRef,
 			},

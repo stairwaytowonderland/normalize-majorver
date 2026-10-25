@@ -39,7 +39,8 @@ export async function run(): Promise<void> {
 		core.debug(`isCreateEvent: ${isCreateEvent}`)
 		core.debug(`isWorkflowDispatchEvent: ${isWorkflowDispatchEvent}`)
 
-		const contextRef = isDryRun ? dryRunTag : context.ref
+		const inputTag = core.getInput('ref')
+		const contextRef = isDryRun ? dryRunTag : inputTag || context.ref
 
 		core.debug(`context: ${JSON.stringify(context)}`)
 		core.info(`ref: ${contextRef}`)
