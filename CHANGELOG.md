@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.1.0...v1.2.0) (2026-10-25)
+
+### ✨ Features
+
+* implemented ref input ([0ead37a](https://github.com/stairwaytowonderland/normalize-majorver/commit/0ead37a97d736575bd7841f32e5dd5895bc4bdb7))
+
 ## [1.1.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.0.9...v1.1.0) (2026-07-21)
 
 ### ✨ Features
