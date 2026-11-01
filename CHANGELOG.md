@@ -1,3 +1,9 @@
+## [1.3.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.2.0...v1.3.0) (2026-11-01)
+
+### ✨ Features
+
+* security updates ([d7c69a9](https://github.com/stairwaytowonderland/normalize-majorver/commit/d7c69a9187d57f18e7167bc4569f94080ad470c0))
+
 ## [1.2.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.1.0...v1.2.0) (2026-10-25)
 
 ### ✨ Features
