@@ -1,3 +1,13 @@
+## [1.5.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.4.0...v1.5.0) (2026-11-02)
+
+### ✨ Features
+
+* update action ([93e5f46](https://github.com/stairwaytowonderland/normalize-majorver/commit/93e5f463c57feeec9485d84b0bd9c4d4f903fdc5))
+
+### 🔄 CI/CD
+
+* **deps:** bump actions/checkout from 6 to 7 in /.github/workflows in the github-actions group across 1 directory ([#1](https://github.com/stairwaytowonderland/normalize-majorver/issues/1)) ([f37471d](https://github.com/stairwaytowonderland/normalize-majorver/commit/f37471de1935db83c532f3165cf55ea188dab4c0))
+
 ## [1.4.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.3.0...v1.4.0) (2026-11-02)
 
 ### ✨ Features
