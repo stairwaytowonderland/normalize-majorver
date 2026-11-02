@@ -14,7 +14,8 @@ repos:
       - id: end-of-file-fixer
         exclude: ^(dist\/index\.[cm]?(?:js|ts)(?:\.map)?|.*\.csv|badges\/.*\.svg)$
       - id: check-added-large-files
-        args: ['--maxkb=2000']
+        args: ['--maxkb=1000']
+        exclude: ^(dist\/index\.[cm]?(?:js|ts)(?:\.map)?|(dist\/licenses\.txt)|.*\.csv|badges\/.*\.svg)$
       - id: check-ast
       - id: check-json
         exclude: ^(\.vscode\/.*\.json|\.?devcontainer(?:\/.*)?\.json)$

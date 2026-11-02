@@ -81,17 +81,8 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.67.0"
 	},
-	"resolutions": {
-		"ip-address": "10.31.0"
-	},
 	"overrides": {
-		"undici": "^6.29.1",
-		"semantic-release": {
-			"undici": "^7.30.1",
-			"@semantic-release/github": {
-				"undici": "^7.30.1"
-			}
-		}
+		"undici": "^6.29.1"
 	},
 	"optionalDependencies": {
 		"@rollup/rollup-linux-x64-gnu": "*"
