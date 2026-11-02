@@ -1,3 +1,18 @@
+## [1.6.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.5.0...v1.6.0) (2026-11-02)
+
+### ✨ Features
+
+* updates ([c001bba](https://github.com/stairwaytowonderland/normalize-majorver/commit/c001bba46bbddc7780d7d535266b6c2af61603a9))
+
+### 🔧 Chores
+
+* package updates ([9b02e88](https://github.com/stairwaytowonderland/normalize-majorver/commit/9b02e8899b6566c69bde2073267d123bf5e2fdc1))
+* udpate lint ([c1fa623](https://github.com/stairwaytowonderland/normalize-majorver/commit/c1fa6233f4c179e78aef01ac06eddaab63a71c54))
+* udpate scripts ([54cb460](https://github.com/stairwaytowonderland/normalize-majorver/commit/54cb460f72716ecfe6d16ed0519364845efaad04))
+* update workflows ([d5045fd](https://github.com/stairwaytowonderland/normalize-majorver/commit/d5045fd0b3aca799721b230522a02f8b62f330dc))
+* update workflows ([a7f4e0b](https://github.com/stairwaytowonderland/normalize-majorver/commit/a7f4e0bdfc8925c3bd867119836748cf830207c1))
+* updates ([aa3135c](https://github.com/stairwaytowonderland/normalize-majorver/commit/aa3135ce989228051e3c83301e669807fe740c9a))
+
 ## [1.5.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.4.0...v1.5.0) (2026-11-02)
 
 ### ✨ Features
