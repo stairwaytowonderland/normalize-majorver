@@ -13,15 +13,12 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 concurrency:
   group: '${{ github.repository_id }}-${{ github.ref_name }}'
   cancel-in-progress: false
-
-permissions:
-  actions: write
-  contents: write
-  issues: write
-  pull-requests: write
 
 # Use PAT instead of GITHUB_TOKEN to cause semantic-release to trigger tag pipeline when tag is created.
 # 'Fine-grained token' repo permissions: Contents
@@ -37,22 +34,26 @@ jobs:
     name: Release
     needs: [meta]
     if: needs.meta.outputs.is-release-workflow == 'true'
+    permissions:
+      actions: write
+      contents: write
+      issues: write
+      pull-requests: write
     uses: ./.github/workflows/release.yaml
-    secrets: inherit
-    # To use the dispatch-workflow for the first release, uncomment the following:
     with:
       dispatch-workflow: ${{ needs.meta.outputs.has-release-tags != 'true' && 'publish.yaml' || '' }}
+    secrets: inherit
 
   publish:
     name: Publish
     needs: [meta]
     if: needs.meta.outputs.is-publish-workflow == 'true'
-    uses: ./.github/workflows/publish.yaml
     permissions:
       contents: write
-    secrets: inherit
+    uses: ./.github/workflows/publish.yaml
     with:
       tag: ${{ github.ref_name }}
+    secrets: inherit
 
   normalize-majorver:
     name: Normalize Major Version Tag

@@ -24,10 +24,12 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   licensed:
     name: Check Licenses
+    permissions:
+      contents: write
+      pull-requests: write
     uses: stairwaytowonderland/.github/.github/workflows/licensed.yaml@v1
     secrets: inherit

@@ -14,17 +14,19 @@ on:
         type: string
 
 permissions:
-  actions: write
-  contents: write
-  issues: write
-  pull-requests: write
+  contents: read
 
 jobs:
   release:
     name: Release
+    permissions:
+      actions: write
+      contents: write
+      issues: write
+      pull-requests: write
     uses: stairwaytowonderland/.github/.github/workflows/release.yaml@v1
-    secrets: inherit
     with:
       dispatch-workflow: ${{ inputs.dispatch-workflow }}
       fail-on-no-release: ${{ inputs.fail-on-no-release }}
       ref: ${{ inputs.ref || github.ref }}
+    secrets: inherit

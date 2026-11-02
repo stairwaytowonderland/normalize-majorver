@@ -22,14 +22,16 @@ on:
 
 permissions:
   contents: read
-  issues: write
-  pull-requests: write
 
 jobs:
   create-labels:
     name: Create Labels
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
     uses: stairwaytowonderland/label-management/.github/workflows/create-labels.yaml@v1
-    secrets: inherit
     with:
       dry-run: ${{ inputs.dry-run == true }}
       update-existing: ${{ inputs.update-existing == true }}
+    secrets: inherit

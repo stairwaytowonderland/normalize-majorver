@@ -7,6 +7,9 @@ on:
   watch:
     types: [started]
 
+permissions:
+  contents: read
+
 jobs:
   stargazers:
     name: 🌟 On Star

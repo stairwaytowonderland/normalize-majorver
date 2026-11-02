@@ -25,13 +25,14 @@ on:
       timezone: America/Chicago
 
 permissions:
-  actions: read
-  # checks: write
   contents: read
-  security-events: write
 
 jobs:
   codeql-analysis:
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     uses: actions/reusable-workflows/.github/workflows/codeql-analysis.yml@main
     with:
       languages: '["typescript"]'

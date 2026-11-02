@@ -23,11 +23,13 @@ on:
 
 permissions:
   contents: read
-  packages: read
-  statuses: write
 
 jobs:
   lint:
     name: Lint Codebase
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
     uses: stairwaytowonderland/.github/.github/workflows/linter.yaml@v1
     secrets: inherit

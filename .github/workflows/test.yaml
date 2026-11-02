@@ -19,8 +19,7 @@ on:
       - 'action.yaml'
 
 permissions:
-  contents: read # access to read repository's content
-  actions: read # access to reading actions
+  contents: read
 
 jobs:
   basic-validation:
@@ -33,7 +32,9 @@ jobs:
   test-action:
     name: GitHub Actions Test
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read # access to read repository's content
+      actions: read # access to reading actions
     steps:
       - name: Checkout repository
         id: checkout
