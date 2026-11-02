@@ -1,3 +1,10 @@
+## [1.7.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.6.0...v1.7.0) (2026-11-02)
+
+### ✨ Features
+
+* updates ([c8c9003](https://github.com/stairwaytowonderland/normalize-majorver/commit/c8c900382c8559d632befa760bfdb6d3a53b08e4))
+* updates ([5087aff](https://github.com/stairwaytowonderland/normalize-majorver/commit/5087affa87198c6c94f433c8f2e6e2de634a1b8d))
+
 ## [1.6.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.5.0...v1.6.0) (2026-11-02)
 
 ### ✨ Features
