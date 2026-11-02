@@ -1,0 +1,134 @@
+#!/bin/sh
+
+set -eu
+
+# This script resets the git tags, cleans the project, reinstalls dependencies, and runs all npm scripts.
+# Copy this file to script/reset, set DRY_RUN to false (or comment it out),
+# and uncomment the actual reset commands.
+
+# !!! CAUTION !!!
+# This script will delete all git tags and clean the project. Use it with extreme care.
+
+# Usage:
+#   sh script/reset.example
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+project_dir="$(cd "$script_dir/.." && pwd)"
+
+DRY_RUN="${DRY_RUN:-true}"
+
+reset() {
+	echo "Fetching tags ..."
+	git fetch --tags
+	tags="$(git tag)"
+	if [ -z "$tags" ]; then
+		printf '\033[0;33m%s\033[0m\n' "No tags found."
+	else
+		printf 'Found tags:\n\033[1m%s\033[0m\n' "$(echo "$tags" | xargs printf '\t%s\n')"
+	fi
+	if [ "${DRY_RUN:-false}" = "true" ]; then
+		printf '\033[0;36m%s\033[0m\n' "Dry run mode: listing remote tags ..."
+		(
+			# set -x
+			# git ls-remote --tags origin | awk -F'\t' '{print "\t" $1 "\t" $2}'
+			for tag in $tags; do git ls-remote --tags origin "$tag" | awk -F'\t' '{print "\t" $1 "\t" $2}'; done
+			git status
+		)
+		printf '\033[0;36m%s\033[0m\n' "Dry run complete ..."
+	else
+		echo "Asking for one final confirmation before performing the actual reset ..."
+		confirmation || abort
+		printf '\033[0;34m%s\033[0m\n' "Performing the actual reset ..."
+
+		# * Actual reset commands:
+		# (
+		# 	set -x
+		# 	npm version 0.0.0 --no-git-tag-version
+		# 	rm -f CHANGELOG.md && npm run all && git add . && git status
+		# 	for tag in $tags; do git tag -d "$tag" && git push -d origin "refs/tags/${tag}"; done
+		# )
+	fi
+}
+
+abort() {
+	echo "Aborting."
+	exit 1
+}
+
+confirm_tags() {
+	printf '\033[0;36m%s\033[0m\n' "Confirming local tags ..."
+	(
+		set -x
+		git tag | xargs echo
+	)
+	printf '\033[0;36m%s\033[0m\n' "Confirming remote tags ..."
+	(
+		set -x
+		git ls-remote --tags origin
+	)
+}
+
+get_symbols() {
+	[ -n "${1-}" ] && [ -n "${2-}" ] || return
+	echo "$1" | grep -o "$2" | tr -d '\n' | xargs echo
+}
+
+copy_script() {
+	if [ "$(basename "$0" | cut -d'.' -f2)" = "example" ]; then
+		old_file_name="$(basename "$0")"
+		new_file_name="$(echo "$old_file_name" | cut -d'.' -f1)"
+		scripts_dir="$(basename "$script_dir")"
+		if [ ! -f "$script_dir/$new_file_name" ]; then
+			printf '\033[0;34m%s\033[0m\n\t' "Creating '$scripts_dir/$new_file_name' from example ..."
+			output=$( (
+				set -x
+				cp "$script_dir/$old_file_name" "$script_dir/$new_file_name"
+			) 2>&1)
+			symbols="$(get_symbols "$output" "+")"
+			echo "$output" | sed "s|$script_dir|./$scripts_dir|g" | sed "s|$symbols|+|g"
+		else
+			printf '\033[0;33m%s\033[0m\n' "A './$scripts_dir/$new_file_name' script already exists!"
+		fi
+		printf '\033[0;31m%s\033[0m\n' "Please run './$scripts_dir/$new_file_name' instead."
+		exit
+	fi
+}
+
+confirmation() {
+	count=$((count + 1))
+	echo "Confirmation #$count"
+	if [ "$count" -eq 1 ]; then
+		msg="Are you sure you want to reset the project? (y/N) "
+		printf '%s' "$msg"
+	fi
+	if [ "$count" -eq 2 ]; then
+		msg="Are you *really* sure you want to reset the project?"
+		msg2="This will delete all git tags and clean the project ... (y/N) "
+		printf '%s\n\t\033[0;33m%s\033[0m' "$msg" "$msg2"
+	fi
+	if [ "$count" -eq 3 ]; then
+		msg="Final confirmation ..."
+		msg2="THIS ACTION CANNOT BE UNDONE! (y/N) "
+		printf '%s\n\t\033[0;31m%s\033[0m' "$msg" "$msg2"
+	fi
+	read -r confirm
+	# shellcheck disable=SC2319
+	[ "${confirm:-n}" = "y" ] || return $?
+}
+
+main() {
+	count=0
+	printf '\033[0;36m%s\033[0m\n' "Project directory: $project_dir"
+	copy_script
+	if [ "${DRY_RUN:-false}" != "true" ]; then
+		confirmation || abort
+		confirmation || abort
+	else
+		printf '\033[0;35m%s\033[0m\n' "Running in dry run mode; no changes will be made."
+	fi
+	reset
+	printf '\033[0;32m%s\033[0m\n' "Reset process completed."
+	confirm_tags
+}
+
+main

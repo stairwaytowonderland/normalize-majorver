@@ -1,0 +1,164 @@
+#!/bin/bash
+
+# Exit early
+# See: https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#The-Set-Builtin
+set -e
+
+# About:
+#
+# This is a helper script to tag and push a new release. GitHub Actions use
+# release tags to allow users to select a specific version of the action to use.
+#
+# See: https://github.com/actions/typescript-action#publishing-a-new-release
+# See: https://github.com/actions/toolkit/blob/master/docs/action-versioning.md#recommendations
+#
+# This script will do the following:
+#
+# 1. Retrieve the latest release tag
+# 2. Display the latest release tag
+# 3. Check if a command line argument is provided for the new release tag
+# 4. Prompt the user for a new release tag, or use the command line argument if provided
+# 5. Validate the new release tag
+# 6. Remind user to update the version field in package.json
+# 7. Commit package.json version update if necessary
+# 8. Tag a new release
+# 9. Set 'is_major_release' variable
+# 10. Push the new tags (with commits, if any) to remote
+#
+# Usage:
+#
+# script/release
+
+# Variables
+semver_tag_regex='v[0-9]+\.[0-9]+\.[0-9]+$'
+semver_tag_glob='v[0-9].[0-9].[0-9]*'
+git_remote='origin'
+major_semver_tag_regex='\(v[0-9]*\)'
+if command -v npm >/dev/null 2>&1; then
+	has_npm=true
+else
+	has_npm=false
+fi
+if [ -f package.json ]; then
+	has_package_json=true
+else
+	has_package_json=false
+fi
+
+# Terminal colors
+OFF='\033[0m'
+BOLD_RED='\033[1;31m'
+BOLD_GREEN='\033[1;32m'
+BOLD_YELLOW='\033[1;33m'
+BOLD_BLUE='\033[1;34m'
+BOLD_PURPLE='\033[1;35m'
+BOLD_UNDERLINED='\033[1;4m'
+BOLD='\033[1m'
+
+# 1. Retrieve the latest release tag; use --tags to include lightweight tags, and --match to filter for semver tags
+if ! latest_tag=$(git describe --abbrev=0 --tags --match="$semver_tag_glob"); then
+	# There are no existing release tags
+	echo -e "No tags found (yet) - Continue to create and push your first tag"
+	latest_tag="[unknown]"
+fi
+
+# 2. Display the latest release tag
+echo -e "The latest release tag is: ${BOLD_BLUE}${latest_tag}${OFF}"
+
+if [ -f package.json ]; then
+	# 3. Check if a command line argument is provided for the new release tag
+	if [ "$#" -ne 0 ]; then
+		if $has_npm; then
+			NPM_VERSION_ARG="$1"
+			TAG=$(
+				set -x
+				npm --no-git-tag-version version "$NPM_VERSION_ARG"
+			)
+			shift
+		else
+			echo -e "${BOLD_YELLOW}Warning:${OFF} npm is not installed. Not able to generate a new release tag from command line argument.\nSet the new release tag manually when prompted..."
+		fi
+	fi
+fi
+
+# 4. Prompt the user for a new release tag, or use the command line argument if provided
+if [ -z "${TAG-}" ]; then
+	read -r -p 'Enter a new release tag (vX.X.X format): ' new_tag
+
+	# 5. Validate the new release tag
+	if echo "$new_tag" | grep -q -E "$semver_tag_regex"; then
+		# Release tag is valid
+		echo -e "Tag: ${BOLD_BLUE}$new_tag${OFF} is valid syntax"
+	else
+		# Release tag is not in `vX.X.X` format
+		echo -e "Tag: ${BOLD_BLUE}$new_tag${OFF} is ${BOLD_RED}not valid${OFF} (must be in ${BOLD}vX.X.X${OFF} format)"
+		exit 1
+	fi
+
+	if $has_package_json; then
+		# 6. Remind user to update the version field in package.json
+		echo -e -n "Make sure the version field in package.json is ${BOLD_BLUE}$new_tag${OFF}. Yes? [Y/${BOLD_UNDERLINED}n${OFF}] "
+		read -r YN
+
+		# package_json_version=$(jq -r '.version' package.json)
+
+		if [[ ! ($YN == "y" || $YN == "Y") ]]; then
+			# Package.json version field is not up to date
+			echo -e "Please update the package.json version to ${BOLD_PURPLE}$new_tag${OFF} and commit your changes"
+			exit 1
+		else
+			npm version "$new_tag" --no-git-tag-version
+		fi
+	fi
+else
+	echo -e "Generated ${BOLD_BLUE}$NPM_VERSION_ARG${OFF} release tag from command line argument: ${BOLD_BLUE}${TAG}${OFF}"
+	new_tag="$TAG"
+fi
+
+# 7. Commit package.json version update if necessary
+if $has_package_json && ! git diff --quiet package.json; then
+	# Package.json version field is not up to date
+	git add package*
+	git commit -m "chore(release): bump version to $new_tag"
+	echo -e "Committed: ${BOLD_BLUE}package.json${OFF} version updated to ${BOLD_BLUE}$new_tag${OFF}"
+fi
+
+# 8. Tag a new release
+git tag "$new_tag" --annotate --message "$new_tag Release"
+echo -e "Tagged: ${BOLD_GREEN}$new_tag${OFF}"
+
+# 9. Set 'is_major_release' variable
+new_major_release_tag=$(expr "$new_tag" : "$major_semver_tag_regex")
+
+if [[ "$latest_tag" = "[unknown]" ]]; then
+	# This is the first major release
+	is_major_release='yes'
+else
+	# Compare the major version of the latest tag with the new tag
+	latest_major_release_tag=$(expr "$latest_tag" : "$major_semver_tag_regex")
+
+	if ! [[ "$new_major_release_tag" = "$latest_major_release_tag" ]]; then
+		is_major_release='yes'
+	else
+		is_major_release='no'
+	fi
+fi
+
+# Point separate major release tag (e.g. v1, v2) to the new release
+if [ $is_major_release = 'yes' ]; then
+	# Create a new major version tag and point it to this release
+	# git tag "$new_major_release_tag" --annotate --message "$new_major_release_tag Release"
+	echo -e "New major version tag: ${BOLD_GREEN}$new_major_release_tag${OFF}"
+else
+	# Update the major version tag to point it to this release
+	# git tag "$latest_major_release_tag" --force --annotate --message "Sync $latest_major_release_tag tag with $new_tag"
+	echo -e "Syncing ${BOLD_GREEN}$latest_major_release_tag${OFF} with ${BOLD_GREEN}$new_tag${OFF}"
+fi
+
+# 10. Push the new tags (with commits, if any) to remote
+git push "$git_remote" --follow-tags
+
+echo -e "Tags: ${BOLD_GREEN}$new_tag${OFF} pushed to remote"
+
+# Completed
+echo -e "${BOLD_GREEN}Done!${OFF}"

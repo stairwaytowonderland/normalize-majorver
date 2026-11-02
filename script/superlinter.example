@@ -1,0 +1,133 @@
+#!/bin/sh
+
+set -eu
+
+# This is an example script for running the Super Linter locally with custom environment variables.
+# Copy this file to script/superlinter and modify it as needed to run the Super Linter locally.
+# See https://github.com/super-linter/super-linter for more information.
+
+# Prerequisites:
+# - GitHub CLI (gh) installed and authenticated
+# - Docker installed and running
+# - jq installed (used by GitHub CLI to parse JSON responses)
+
+# Usage:
+#   sh superlinter.example
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+project_dir="$(cd "$script_dir/.." && pwd)"
+
+# Super Linter image to use (docker image repository)
+#   e.g., ghcr.io/super-linter/super-linter
+SUPER_LINTER_IMAGE=ghcr.io/super-linter/super-linter
+# Super Linter version (docker image tag) to use
+#   e.g., v8.7.0, latest
+SUPER_LINTER_VERSION=v9.0.0
+
+# Set environment variables for the Super Linter.
+export \
+	CHECKOV_FILE_NAME=.checkov.yml \
+	DEFAULT_BRANCH=main \
+	FILTER_REGEX_EXCLUDE='(docs/.*\..*$|dist/.*|.*\.csv$|CHANGELOG.md)' \
+	LINTER_RULES_PATH=/ \
+	VALIDATE_PRETTIER=true \
+	VALIDATE_EDITORCONFIG=false \
+	VALIDATE_CHECKOV=false \
+	VALIDATE_NATURAL_LANGUAGE=false \
+	VALIDATE_ALL_CODEBASE=true \
+	VALIDATE_BIOME_FORMAT=false \
+	VALIDATE_BIOME_LINT=false \
+	VALIDATE_GITHUB_ACTIONS_ZIZMOR=false \
+	VALIDATE_JAVASCRIPT_ES=false \
+	VALIDATE_JSCPD=false \
+	VALIDATE_TYPESCRIPT_ES=false \
+	VALIDATE_JSON=false \
+	VALIDATE_HTML=false \
+	CREATE_LOG_FILE=false \
+	LOG_FILE=super-linter.log
+
+# Additional environment variables can be set here before running the Super Linter.
+# * Make sure to mirror the variable in the docker run command (e.g. -e "LOG_LEVEL").
+
+# Set the log level for the Super Linter.
+# export LOG_LEVEL=debug
+
+# Overreride the default workspace for the Super Linter.
+# export DEFAULT_WORKSPACE=/tmp/lint
+
+# Uncomment the following line to disable TypeScript Prettier validation.
+# export VALIDATE_TYPESCRIPT_PRETTIER=false
+
+superlinter() {
+	set -x
+
+	# Authenticate with GitHub to obtain a personal access token.
+	gh auth status || gh auth login -h github.com -p https -w
+
+	# Authenticate with Docker using the GitHub personal access token and logged in user.
+	gh auth token | docker login ghcr.io -u "$(gh api user --jq '.login')" --password-stdin
+
+	# Run the Super Linter locally using Docker.
+	# https://github.com/super-linter/super-linter/blob/main/docs/run-linter-locally.md#run-super-linter-locally
+	# * Always set RUN_LOCAL=true to bypass some of the GitHub Actions checks, (as well as the mapping of your local codebase to /tmp/lint).
+	# * Set the DEFAULT_WORKSPACE environment variable to point to the folder you'd prefer to scan (if different from the default /tmp/lint).
+	docker run --rm --platform linux/amd64 \
+		-e "CHECKOV_FILE_NAME" \
+		-e "DEFAULT_BRANCH" \
+		-e "FILTER_REGEX_EXCLUDE" \
+		-e "LINTER_RULES_PATH" \
+		-e "VALIDATE_PRETTIER" \
+		-e "VALIDATE_TYPESCRIPT_PRETTIER" \
+		-e "VALIDATE_EDITORCONFIG" \
+		-e "VALIDATE_CHECKOV" \
+		-e "VALIDATE_NATURAL_LANGUAGE" \
+		-e "VALIDATE_ALL_CODEBASE" \
+		-e "VALIDATE_BIOME_FORMAT" \
+		-e "VALIDATE_BIOME_LINT" \
+		-e "VALIDATE_GITHUB_ACTIONS_ZIZMOR" \
+		-e "VALIDATE_JAVASCRIPT_ES" \
+		-e "VALIDATE_JSCPD" \
+		-e "VALIDATE_TYPESCRIPT_ES" \
+		-e "VALIDATE_JSON" \
+		-e "CREATE_LOG_FILE" \
+		-e "LOG_FILE" \
+		-e "LOG_LEVEL" \
+		-e "DEFAULT_WORKSPACE" \
+		-e RUN_LOCAL=true \
+		-v "$project_dir":"${DEFAULT_WORKSPACE:-/tmp/lint}" \
+		"$SUPER_LINTER_IMAGE":"${SUPER_LINTER_VERSION:-latest}"
+}
+
+get_symbols() {
+	[ -n "${1-}" ] && [ -n "${2-}" ] || return
+	echo "$1" | grep -o "$2" | tr -d '\n' | xargs echo
+}
+
+copy_script() {
+	if [ "$(basename "$0" | cut -d'.' -f2)" = "example" ]; then
+		old_file_name="$(basename "$0")"
+		new_file_name="$(echo "$old_file_name" | cut -d'.' -f1)"
+		scripts_dir="$(basename "$script_dir")"
+		if [ ! -f "$script_dir/$new_file_name" ]; then
+			printf '\033[0;34m%s\033[0m\n\t' "Creating '$scripts_dir/$new_file_name' from example ..."
+			output=$( (
+				set -x
+				cp "$script_dir/$old_file_name" "$script_dir/$new_file_name"
+			) 2>&1)
+			symbols="$(get_symbols "$output" "+")"
+			echo "$output" | sed "s|$script_dir|./$scripts_dir|g" | sed "s|$symbols|+|g"
+		else
+			printf '\033[0;33m%s\033[0m\n' "A './$scripts_dir/$new_file_name' script already exists!"
+		fi
+		printf '\033[0;31m%s\033[0m\n' "Please run './$scripts_dir/$new_file_name' instead."
+		exit
+	fi
+}
+
+main() {
+	printf '\033[0;36m%s\033[0m\n' "Project directory: $project_dir"
+	copy_script
+	superlinter
+}
+
+main

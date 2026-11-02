@@ -114,3 +114,8 @@ logs
 out/
 *.sarif
 .venv
+
+/script/*
+!/script/release
+!/script/*.sh
+!/script/*.example
