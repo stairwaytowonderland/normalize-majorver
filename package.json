@@ -24,6 +24,7 @@
 	},
 	"scripts": {
 		"preinstall": "npx npm-force-resolutions",
+		"postinstall": "node -e \"const fs = require('fs'); const f = 'package-lock.json'; const c = fs.readFileSync(f, 'utf8').trimEnd(); fs.writeFileSync(f, c + '\\n');\"",
 		"install:safe": "npm install --legacy-peer-deps --node-gyp=./node_modules/.bin/node-gyp",
 		"clean": "rm -rf node_modules dist package-lock.json",
 		"clean-cache": "npm cache clean --force",
