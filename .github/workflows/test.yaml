@@ -5,18 +5,20 @@ on:
     branches:
       - main
     paths:
-      # - '.github/**'
+      - '.github/**'
       - 'src/**'
       - 'package*.json'
       - 'action.yaml'
-  push:
-    branches:
-      - main
-    paths:
-      # - '.github/**'
-      - 'src/**'
-      - 'package*.json'
-      - 'action.yaml'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - '.github/**'
+  #     - 'src/**'
+  #     - 'package*.json'
+  #     - 'action.yaml'
+  workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read
@@ -28,6 +30,28 @@ jobs:
     with:
       operating-systems: '["ubuntu-latest"]'
       enable-audit: false
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20, 22, 24]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm-node-${{ matrix.node-version }}'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
 
   test-action:
     name: GitHub Actions Test

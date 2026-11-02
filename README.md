@@ -19,6 +19,7 @@ pushed. For example, if v1.2.3 tag is pushed, it updates the v1 tag. It works we
 ## :cactus: Project structure
 
 > [!TIP]
+>
 > See the `.github` folder's _"Readme"_ ([`index.md`](./.github/index.md)) for its file structure.
 
 <details>

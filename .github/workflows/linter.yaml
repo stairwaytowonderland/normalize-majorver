@@ -33,9 +33,4 @@ jobs:
       packages: read
       statuses: write
     uses: stairwaytowonderland/.github/.github/workflows/linter.yaml@v1
-    with:
-      superlinter-validate-editorconfig: false
-      # superlinter-filter-regex-exclude: '(docs/.*\..*$|dist/.*|.*\.csv$|CHANGELOG.md)'
-      additional-vars: |
-        VALIDATE_HTML=false
     secrets: inherit

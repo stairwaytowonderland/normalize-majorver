@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: '${{ github.repository_id }}-${{ github.ref_name }}'
@@ -27,8 +27,16 @@ jobs:
   meta:
     name: Meta
     uses: stairwaytowonderland/.github/.github/workflows/ci-meta.yaml@v1
+
+  test:
+    name: Test
+    needs: [meta]
+    if: needs.meta.outputs.is-release-workflow == 'true'
     permissions:
       contents: read
+      actions: read
+    uses: ./.github/workflows/test.yaml
+    secrets: inherit
 
   release:
     name: Release
