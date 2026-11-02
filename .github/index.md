@@ -14,7 +14,6 @@
 │   ├── codeql-analysis.yml
 │   ├── conventional-commit.yaml
 │   ├── create-labels.yaml
-│   ├── dependabot-tests.yaml
 │   ├── import-csv-issues.yaml
 │   ├── licensed.yaml
 │   ├── linter.yaml
