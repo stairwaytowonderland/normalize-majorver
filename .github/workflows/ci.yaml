@@ -40,7 +40,7 @@ jobs:
 
   release:
     name: Release
-    needs: [meta]
+    needs: [meta, test]
     if: needs.meta.outputs.is-release-workflow == 'true'
     permissions:
       actions: write
