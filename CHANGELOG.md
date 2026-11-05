@@ -1,3 +1,10 @@
+## [1.8.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.7.0...v1.8.0) (2026-11-05)
+
+### ✨ Features
+
+* udpates ([f62c14c](https://github.com/stairwaytowonderland/normalize-majorver/commit/f62c14c78f16d2ab5828962c73a399a1cb689f9b))
+* update prettierignore ([4f5987d](https://github.com/stairwaytowonderland/normalize-majorver/commit/4f5987dfa052508e72f93700488f9a1fea7fecf8))
+
 ## [1.7.0](https://github.com/stairwaytowonderland/normalize-majorver/compare/v1.6.0...v1.7.0) (2026-11-02)
 
 ### ✨ Features
