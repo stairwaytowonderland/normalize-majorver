@@ -1,9 +1,10 @@
 # :shopping_cart: GitHub Action: Normalize Major Version Tag
 
-![CI](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/ci.yaml/badge.svg)
-![Linter](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/linter.yaml/badge.svg)
-![CodeQL](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/codeql-analysis.yml/badge.svg)
+[![CI](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/ci.yaml/badge.svg)](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/ci.yaml)
+[![Linter](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/linter.yaml/badge.svg)](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/linter.yaml)
+[![CodeQL](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/stairwaytowonderland/normalize-majorver/actions/workflows/codeql-analysis.yml)
 ![Coverage](./badges/coverage.svg)
+[![Documented](./badges/documentation.svg)](./docs)
 
 [![GitHub latest release](https://img.shields.io/github/v/release/stairwaytowonderland/normalize-majorver?include_prereleases&logo=rocket)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/releases)
 [![GitHub last commit](https://img.shields.io/github/last-commit/stairwaytowonderland/normalize-majorver?logo=git)](https://github.com/stairwaytowonderland/stairwaytowonderland/normalize-majorver/commits/main)
@@ -36,6 +37,8 @@ pushed. For example, if v1.2.3 tag is pushed, it updates the v1 tag. It works we
 ├── .licenses/
 ├── badges/
 ├── dist/
+├── docs/
+├── script/
 ├── src/
 ├── .checkov.yml
 ├── .editorconfig
@@ -61,7 +64,10 @@ pushed. For example, if v1.2.3 tag is pushed, it updates the v1 tag. It works we
 ├── package.json
 ├── README.md
 ├── rollup.config.ts
-└── tsconfig.json
+├── tsconfig.json
+├── tsconfig.test.json
+├── typedoc.action.json
+└── typedoc.json
 ```
 
 </details>

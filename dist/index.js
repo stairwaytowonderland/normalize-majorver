@@ -1,3 +1,7 @@
+/**
+ * Copyright 2026 stairwaytowonderland
+ */
+
 import * as os from 'os';
 import os__default, { EOL } from 'os';
 import 'crypto';
@@ -34087,23 +34091,21 @@ Octokit$1.plugin(restEndpointMethods, paginateRest).defaults(defaults);
 
 const context = new Context();
 
-function refIsValidMajorVer(ref) {
-    if (!ref.match(/^refs\/tags\/.+$/)) {
-        return false;
-    }
-    return true;
-}
-function refIsValidSemVer(ref) {
-    if (!ref.match(/^refs\/tags\/v\d+\.\d+\.\d+$/)) {
-        return false;
-    }
-    return true;
-}
-function getTagFromRef(ref) {
-    const tag = ref.split('/')[2];
-    const major = tag.split('.')[0];
-    return { tag, major };
-}
+/**
+ * Main entry for the GitHub Action.
+ *
+ * This file contains the main entry for the GitHub Action,
+ * which gathers inputs and invokes the run function.
+ *
+ * @packageDocumentation
+ */
+/**
+ * Main entry point for the GitHub Action that handles tagging logic based on the event context.
+ *
+ * Handles dry-run mode, pull request events, create events, and workflow dispatch events to determine the appropriate tag and commit SHA.
+ *
+ * @returns Promise that resolves when the action has completed or rejects if an error occurs
+ */
 async function run() {
     try {
         const isDryRun = getInput('dry-run') === 'true';
@@ -34208,11 +34210,52 @@ async function run() {
             setFailed(error.message);
     }
 }
+/**
+ * Validates whether the given Git reference string corresponds to a major version tag.
+ *
+ * @param ref The Git reference string to validate as a major version tag.
+ * @returns True if the reference is a valid major version tag, false otherwise.
+ */
+function refIsValidMajorVer(ref) {
+    if (!ref.match(/^refs\/tags\/.+$/)) {
+        return false;
+    }
+    return true;
+}
+/**
+ * Validates whether the given Git reference string corresponds to a semantic version tag.
+ *
+ * @param ref The Git reference string to validate as a semantic version tag.
+ * @returns True if the reference is a valid semantic version tag, false otherwise.
+ */
+function refIsValidSemVer(ref) {
+    if (!ref.match(/^refs\/tags\/v\d+\.\d+\.\d+$/)) {
+        return false;
+    }
+    return true;
+}
+/**
+ * Extracts the tag and major version from a Git reference string.
+ *
+ * @param ref The Git reference string to extract the tag and major version from.
+ * @returns An object containing the full tag and the major version.
+ */
+function getTagFromRef(ref) {
+    const tag = ref.split('/')[2];
+    const major = tag.split('.')[0];
+    return { tag, major };
+}
 
 /**
- * The entrypoint for the action. This file simply imports and runs the action's
- * main logic.
+ * Barrel file for the GitHub Action.
+ *
+ * The entrypoint for the action.
+ * This file simply imports and runs the main logic of the action.
+ *
+ * @packageDocumentation
  */
 /* istanbul ignore next */
 run();
+
+export { run };
 //# sourceMappingURL=index.js.map

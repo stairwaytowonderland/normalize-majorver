@@ -1,0 +1,14 @@
+{
+	"extends": "./typedoc.json",
+	"readme": "none",
+	"plugin": ["typedoc-plugin-coverage", "typedoc-plugin-markdown"],
+	"entryPoints": ["src/index.ts", "src/main.ts"],
+	"entryPointStrategy": "resolve",
+	"sort": ["source-order"],
+	"sortEntryPoints": false,
+	"coverageLabel": "⌨️ Documented",
+	"coverageColor": "#5330c8",
+	"coverageOutputPath": "./badges/documentation.svg",
+	"coverageOutputType": "svg",
+	"coverageSvgWidth": 136
+}

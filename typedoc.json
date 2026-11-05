@@ -1,0 +1,30 @@
+{
+	"$schema": "https://typedoc.org/schema.json",
+	"logLevel": "Info",
+	"readme": "none",
+	"out": "./docs",
+	"disableSources": false,
+	"gitRevision": "main",
+	"enumMembersFormat": "table",
+	"parametersFormat": "table",
+	"typeDeclarationFormat": "table",
+	"indexFormat": "table",
+	"useCodeBlocks": true,
+	"expandObjects": true,
+	"entryPoints": ["src"],
+	"sort": [
+		"kind",
+		"instance-first",
+		"required-first",
+		"external-last",
+		"alphabetical"
+	],
+	"sortEntryPoints": true,
+	"exclude": [
+		"**/__tests__/**",
+		"**/__fixtures__/**",
+		"**/__utils__/**",
+		"**/docs/**",
+		"**/*.test.ts"
+	]
+}

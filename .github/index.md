@@ -26,7 +26,6 @@
 ├── CODEOWNERS
 ├── dependabot.yml
 └── index.md
-
 ```
 
 > [!TIP]
